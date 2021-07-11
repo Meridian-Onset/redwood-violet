@@ -11,7 +11,9 @@ class environment:
         self.xLimit = xLimit
         self.ylimit = yLimit
 
-    def plot(self, terrain: dict, showEnv : bool = False, *args, **kwargs):
+        self.terrain = {}
+
+    def plot(self, terrain: dict, showEnv : bool = False) -> tuple:
         '''Generate and return a matplotlib plot. NOTE: Extra args and kwargs
         passed to the initial ax.scatter calls'''
         fig, ax = plt.subplots(facecolor='#1f233a')
@@ -21,10 +23,9 @@ class environment:
             ax.scatter(
                 'x', 'y', data=terrain[key],
                 marker = terrain[key]['symbol'],
-                color = terrain[key]['color']
-                *args, **kwargs)
+                color = terrain[key]['color'])
         if showEnv : plt.show()
-        return fig, ax
+        return (fig, ax)
 
 
 
