@@ -1,4 +1,5 @@
-'''File contains the initialization protocols for custom environments in simulations.'''
+'''File contains the initialization protocols for custom environments
+in simulations.'''
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,7 +14,7 @@ class environment:
 
         self.terrain = {}
 
-    def plot(self, terrain: dict, showEnv : bool = False) -> tuple:
+    def plot(self, terrain: dict, showEnv : bool = False, *args, **kwargs) -> tuple:
         '''Generate and return a matplotlib plot. NOTE: Extra args and kwargs
         passed to the initial ax.scatter calls'''
         fig, ax = plt.subplots(facecolor='#1f233a')
@@ -23,7 +24,8 @@ class environment:
             ax.scatter(
                 'x', 'y', data=terrain[key],
                 marker = terrain[key]['symbol'],
-                color = terrain[key]['color'])
+                color = terrain[key]['color'],
+                *args, **kwargs)
         if showEnv : plt.show()
         return (fig, ax)
 

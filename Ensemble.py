@@ -11,7 +11,8 @@ import progressbar as pg
 np.random.seed(conf.seed) #dank
 
 class InvalidObjectError(Exception):
-    pass
+    def __init__(self, message):
+        print(message)
 
 class Ensemble:
     '''Generic ensemble, container for all the machinery of simulations.'''
@@ -42,7 +43,7 @@ class Ensemble:
     '''
 
 
-    def toArray(self, objects_type) -> np.array:
+    def toArray(self, objects_type) -> list:
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
         valids = ("actors", "rewards", "agents", "incentives")
         x, y = np.array([]), np.array([])
@@ -100,6 +101,7 @@ class Ensemble:
             ncol=2, mode="expand", borderaxespad=0.
             )
 
+        if save: plt.savefig(f'Snapshots/{input("Enter destination filename")}.png')
         plt.show()
 
     # ! In Progress
