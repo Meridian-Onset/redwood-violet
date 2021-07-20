@@ -1,6 +1,7 @@
 import numpy as np
 import logging
 from enum import Enum, auto
+import config as cfg
 
 
 # Import internal modules
@@ -9,27 +10,34 @@ import Rewards as rewards
 class basicActor:
     #Basic, short_sighted actor without complex behaviours
 
-    def __init__(self, field_size : np.array(2)):
+
+    def __init__(self, field_size : int):
+
         self.x = np.random.random() * field_size
         self.y = np.random.random() * field_size
-        self.pos = np.array([self.x, self.y]) #! NOTE Currently not in use
+        self.position = cfg.Position(self.x, self.y)
         self.stats = {'hunger' : 0,
                       'illness' : 0}
-        self.found_food = [0, 0, 0]
+        self.found_food = [0, #Boolean if found
+            None
+        ]
 
         self.move_magnitude = 1
         self.sight_radius = 1
 
-    def detect_reward(self, reward_array, print_result = False):
+    def detect_rewards(self, reward_array : list, print_result : bool = False) -> cfg.Position:
+        rewards_in_range = []
+
         for reward in reward_array:
             # TODO: Check numpy library to clean this machinery up
             dist = np.sqrt((self.x - reward.x)**2 + (self.y - reward.y)**2)
+
             if dist <= self.sight_radius:
-                self.found_food = [1, reward]
-                if print_result != False:
-                    print("Yoohoo; found some food!")
-                return()
+                rewards_in_range.append(reward.position)
+                if print_result != False: print("Yoohoo; found some food!")
+
             else: pass
+        return nearestReward
 
     def move(self):
         if self.found_food[0] == True:
@@ -45,20 +53,23 @@ class basicActor:
 
 
 if __name__ == "__main__":
-    testActor = basicActor(100)
+    try:
+        testActor = basicActor(100)
 
-    reward_array_test = []
-    for _ in range(1000): # Initialize test array
-        reward_array_test.append(rewards.Food(100))
+        reward_array_test = []
+        for _ in range(100): # Initialize test array
+            reward_array_test.append(rewards.Food(100))
 
-    print(reward_array_test)
-    for _ in range(10):
-        testActor.detect_reward(reward_array_test,
-                                print_result = True)
-        testActor.move()
-        for i in range(len(reward_array_test)):
-            if reward_array_test[i].eaten == True:
-                reward_array_test.pop(reward_array_test[i])
-        print(testActor.x, testActor.y)
+        for _ in range(10): #test for ten cycles
+            testActor.detect_reward(reward_array_test)
+            testActor.move()
+            for i in range(len(reward_array_test)):
+                if reward_array_test[i].eaten == True:
+                    del reward_array_test[i]
+            print(testActor.stats)
+    except Exception as err:
+        print(err)
+
+        #print(testActor.x, testActor.y)
 
 

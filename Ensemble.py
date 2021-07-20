@@ -82,13 +82,15 @@ class Ensemble:
         actor_x, actor_y = self.toArray("actors")
         reward_x, reward_y = self.toArray("rewards")
 
+        #Draw the actors.
         ax.scatter(
             actor_x, actor_y,
             marker = conf.actorPlottingConfig['marker'],
             color = conf.actorPlottingConfig['color'],
             label = conf.actorPlottingConfig['label']
         )
-#
+
+        #Draw the rewards
         ax.scatter(
             reward_x, reward_y,
             marker = conf.foodPlottingConfig['marker'],
