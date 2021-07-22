@@ -29,28 +29,19 @@ class PositionUnboundedError(Exception):
 
         return(f"Position outside simulation boundaries with {x_message}{y_message}")
 
-"""def bounding_promise(func):
-    #Boundary Checking Promise
-    @wraps(func)
-    def position_promise_wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        print(result.x, result.y)
-        if result.x < 0 | result.x > field_size:
-            raise PositionUnboundedError(result)
-        elif result.y < 0 | result.y > field_size:
-            raise PositionUnboundedError(result)
-        else:
-            return result
-
-    return position_promise_wrapper"""
-
 
 class Vector:
-    def __init__(self, x, y):
-        if not (0 <= x < field_size):
-            raise PositionUnboundedError(x, y)
-        if not (0 <= y < field_size):
-            raise PositionUnboundedError(x, y)
+    def __init__(self, x, y, allow_out_of_bounds = False):
+        try:
+            if not (0 <= x < field_size):
+                raise PositionUnboundedError(x, y)
+            if not (0 <= y < field_size):
+                raise PositionUnboundedError(x, y)
+        except PositionUnboundedError:
+            if allow_out_of_bounds:
+                pass
+            else:
+                raise PositionUnboundedError(x, y)
         self.x = x
         self.y = y
 
