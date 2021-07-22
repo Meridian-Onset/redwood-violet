@@ -1,8 +1,8 @@
 import numpy as np
-import logging
 from enum import Enum, auto
 import config as cfg
 
+from positions import Vector
 
 # Import internal modules
 import Rewards as rewards
@@ -13,9 +13,9 @@ class basicActor:
 
     def __init__(self, field_size : int):
 
-        self.x = np.random.random() * field_size
-        self.y = np.random.random() * field_size
-        self.position = cfg.Position(self.x, self.y)
+        x = np.random.random() * field_size
+        y = np.random.random() * field_size
+        self.position = Vector(x, y)
         self.stats = {'hunger' : 0,
                       'illness' : 0}
         self.found_food = [0, #Boolean if found
@@ -25,7 +25,7 @@ class basicActor:
         self.move_magnitude = 1
         self.sight_radius = 1
 
-    def detect_rewards(self, reward_array : list, print_result : bool = False) -> cfg.Position:
+    def detect_rewards(self, reward_array : list, print_result : bool = False) -> Vector:
         rewards_in_range = []
 
         for reward in reward_array:
@@ -39,7 +39,7 @@ class basicActor:
             else: pass
         return nearestReward
 
-    def move(self):
+    def move(self) -> None:
         if self.found_food[0] == True:
             reward = self.found_food[1]
             self.x, self.y = reward.x, reward.y

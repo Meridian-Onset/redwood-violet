@@ -1,6 +1,7 @@
 """Main entrypoint into simulation library"""
 
-import testing as test
+import logging
+
 import sim_components as sim
 
 if __name__ == "__main__":

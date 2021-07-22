@@ -34,27 +34,23 @@ class PositionUnboundedError(Exception):
 class Vector:
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
-            if not (0 <= x < field_size):
+            if not (0 <= x < field_size) | (0 <= y < field_size):
                 raise PositionUnboundedError(x, y)
-            if not (0 <= y < field_size):
-                raise PositionUnboundedError(x, y)
+
         except PositionUnboundedError:
-            if allow_out_of_bounds:
-                pass
+            if allow_out_of_bounds: pass
             else:
                 raise PositionUnboundedError(x, y)
         self.x = x
         self.y = y
 
     def __add__(self, other):
-        #Faster than numpy
         return Vector(
             self.x + other.x,
             self.y + other.y
         )
 
     def __sub__(self, other):
-        #Faster than numpy
         return Vector(
             self.x - other.x,
             self.y - other.y
@@ -62,15 +58,12 @@ class Vector:
 
     def __mul__(self, other):
         #Note that this is the dot product of the vectors
-        #Faster than np.dot
         return self.x * other.x + self.y * other.y
 
     def __str__(self):
         return(f"x : {self.x}\ny : {self.y}")
 
     def distance_from(self, other):
-        #Faster than numpy.linalg.norm(a-b)
-        """Takes another Position object as argument and calculates the distance between the two"""
         return np.sqrt((self.x-other.y)**2 + (self.y - other.y)**2)
 
     @property
@@ -91,6 +84,7 @@ class Vector:
 
     @property
     def theta_from_y(self):
+        """Angle of vector from the y axis"""
         return np.arcsin(self.x/self.magnitude)
 
 #Dictionary of numpy analogues to the Vector methods for testing purposes

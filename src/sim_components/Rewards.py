@@ -1,15 +1,18 @@
 import numpy as np
+
 import config as cfg
+from positions import Vector
 
 class Instance:
     '''Standard reward type, no change to actor stats, food and poison inherit from this class''' # TODO : fix this to use the vector class
     def __init__(self, field_size, rotten_chance = 0):
-        self.x = np.random.random() * field_size
-        self.y = np.random.random() * field_size
+        x = np.random.random() * field_size
+        y = np.random.random() * field_size
+
+        self.position = Vector(x, y)
         self.rotten_chance = rotten_chance
         self.rotten = (np.random.random() < rotten_chance)
         self.eaten = False
-        self.position = cfg.Position(self.x, self.y)
 
     def consume(self) -> dict:
         """The consume method pops the attribute additives to the consumer."""
