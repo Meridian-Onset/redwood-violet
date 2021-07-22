@@ -9,6 +9,7 @@ from functools import wraps
 from promise import Promise
 
 class PositionUnboundedError(Exception):
+    """Ignorable exception sub-class for specifying invalid initialization parameters"""
     def __init__(self, x, y, message = None):
         self.bad_x = x
         self.bad_y = y
@@ -83,8 +84,6 @@ class Vector:
             self.y / self.magnitude
         )
 
-    def cross_product(self, other): #TODO
-        pass
 
 #Dictionary of numpy analogues to the Vector methods for testing purposes
 numpyMethodAnalogues = {
@@ -93,7 +92,6 @@ numpyMethodAnalogues = {
     Vector.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
     Vector.magnitude : lambda x, randvals : np.linalg.norm(x),
     Vector.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
-    Vector.cross_product : lambda x, randvals : np.linalg.cross_product(x, np.array(randvals)),
     Vector.unit : lambda x, randvals : x / np.norm(x)
 }
 
