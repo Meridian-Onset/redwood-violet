@@ -84,6 +84,14 @@ class Vector:
             self.y / self.magnitude
         )
 
+    @property
+    def theta_from_x(self):
+        """Angle of vector from the x axis"""
+        return np.arcsin(self.y/self.magnitude)
+
+    @property
+    def theta_from_y(self):
+        return np.arcsin(self.x/self.magnitude)
 
 #Dictionary of numpy analogues to the Vector methods for testing purposes
 numpyMethodAnalogues = {
