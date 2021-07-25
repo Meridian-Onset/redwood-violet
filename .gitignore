@@ -1,13 +1,7 @@
 *.pyc
 
-pycache*/*.pyc
+*pycache*/*.pyc
 
-__pycache__/Actors.cpython-37.pyc
+pycache
 
-__pycache__/config.cpython-37.pyc
-
-__pycache__/Rewards.cpython-37.pyc
-scratchpad.py
-__pycache__/Rewards.cpython-37.pyc
-__pycache__/config.cpython-37.pyc
-.gitignore
+*scratchpad*
