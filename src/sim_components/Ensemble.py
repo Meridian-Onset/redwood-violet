@@ -45,6 +45,7 @@ class Ensemble:
 
     def toArray(self, objects_type) -> list:
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
+        # TODO: Implement acceptable keywords with 
         valids = ("actors", "rewards", "agents", "incentives")
         x, y = np.array([]), np.array([])
 
@@ -70,8 +71,9 @@ class Ensemble:
         for _ in range(cycles):
 
             #TODO: Add day-night functionality
-            i += 1
-            update_progress(i/cycles, operation)
+            #i += 1
+            #update_progress(i/cycles, operation)
+
             for actor in self.players:
                 actor.move()
 
@@ -105,6 +107,13 @@ class Ensemble:
 
         if save: plt.savefig(f'Snapshots/{input("Enter destination filename")}.png')
         plt.show()
+
+    def animation_init(self) -> None:
+        #Draws the background environment and starting actors
+        fig, ax = self.Environment.plot()
+
+    def animate(self, fig, ax) -> None:
+        #Draws changed
 
     # ! In Progress
     def documentation(self, externalWindow : bool = True) -> None:

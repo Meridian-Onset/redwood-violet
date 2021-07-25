@@ -30,14 +30,14 @@ class basicActor:
 
         for reward in reward_array:
             # TODO: Check numpy library to clean this machinery up
-            dist = np.sqrt((self.x - reward.x)**2 + (self.y - reward.y)**2)
+            dist = (self.x - reward.x)**2 + (self.y - reward.y)**2
 
-            if dist <= self.sight_radius:
+            if dist <= self.sight_radius**2:
                 rewards_in_range.append(reward.position)
                 if print_result != False: print("Yoohoo; found some food!")
 
             else: pass
-        return nearestReward
+        return rewards_in_range
 
     def move(self) -> None:
         if self.found_food[0] == True:

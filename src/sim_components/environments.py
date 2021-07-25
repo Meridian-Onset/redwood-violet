@@ -14,11 +14,16 @@ class environment:
 
         self.terrain = {}
 
-    def plot(self, terrain: dict, showEnv : bool = False, *args, **kwargs) -> tuple:
+    def terrainFiller(self):
+        pass
+
+    def plot(self, showEnv : bool = False, *args, **kwargs) -> tuple:
         '''Generate and return a matplotlib plot. NOTE: Extra args and kwargs
         passed to the initial ax.scatter calls'''
         fig, ax = plt.subplots(facecolor='#1f233a')
         ax.set_facecolor('#1f233a')
+
+        terrain = self.terrain
 
         for key in terrain.keys():
             ax.scatter(
