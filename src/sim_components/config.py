@@ -1,28 +1,14 @@
-import collections
-
-#Position = collections.namedtuple('Position', ['x', 'y'])
-
-seed = 420 # dank
-
-field_size = 100
-
-actorPlottingConfig = {
-    'color' : '#3BEBA8',
-    'marker' : 'o',
-    'label' : 'actors'
-}
-
-foodPlottingConfig = {
-    'color' : 'red',
-    'marker' : 'x',
-    'label' : 'food'
-}
-
-food_values = {
-    'default_nutritive_value' : 1
-}
+import os
+import json
 
 
+cwd = os.path.dirname(os.path.realpath(__file__))
+
+butt = os.path.join(cwd, 'cfg.json')
+
+with open(butt) as f:
+    conf = json.load(f)
 
 if __name__ == "__main__":
-    print(Position(1, 2))
+    for key in conf.keys():
+        print(conf[key])

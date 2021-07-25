@@ -1,0 +1,21 @@
+{
+    "seed" : 420,
+
+    "field_size" : 100,
+
+    "actorPlottingConfig" : {
+        "color" : "#3BEBA8",
+        "marker" : "o",
+        "label" : "actors"
+    },
+
+    "foodPlottingConfig" : {
+        "color" : "red",
+        "marker" : "x",
+        "label" : "food"
+    },
+
+    "food_values" : {
+        "default_nutritive_value" : 1
+    }
+}
