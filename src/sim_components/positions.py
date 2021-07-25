@@ -1,6 +1,3 @@
-"""Generic position vector class, designed to emulate a namedtuple, with
-baked-in Cartesian calculations and boundary checking"""
-
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
@@ -31,7 +28,9 @@ class PositionUnboundedError(Exception):
         return(f"Position outside simulation boundaries with {x_message}{y_message}")
 
 
-class Vector:
+class Vector_2D:
+    """Generic position vector_2D class, designed to emulate a namedtuple, with
+    baked-in Cartesian calculations and boundary checking"""
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
             if not (0 <= x < field_size) | (0 <= y < field_size):
@@ -45,19 +44,19 @@ class Vector:
         self.y = y
 
     def __add__(self, other):
-        return Vector(
+        return Vector_2D(
             self.x + other.x,
             self.y + other.y
         )
 
     def __sub__(self, other):
-        return Vector(
+        return Vector_2D(
             self.x - other.x,
             self.y - other.y
         )
 
     def __mul__(self, other):
-        #Note that this is the dot product of the vectors
+        #Note that this is the dot product of the vector_2Ds
         return self.x * other.x + self.y * other.y
 
     def __str__(self):
@@ -68,37 +67,37 @@ class Vector:
 
     @property
     def magnitude(self):
-        return self.distance_from(self, Vector(0, 0))
+        return self.distance_from(self, Vector_2D(0, 0))
 
     @property
     def unit(self):
-        return Vector(
+        return Vector_2D(
             self.x / self.magnitude,
             self.y / self.magnitude
         )
 
     @property
     def theta_from_x(self):
-        """Angle of vector from the x axis"""
+        """Angle of vector_2D from the x axis"""
         return np.arcsin(self.y/self.magnitude)
 
     @property
     def theta_from_y(self):
-        """Angle of vector from the y axis"""
+        """Angle of vector_2D from the y axis"""
         return np.arcsin(self.x/self.magnitude)
 
-#Dictionary of numpy analogues to the Vector methods for testing purposes
+#Dictionary of numpy analogues to the Vector_2D methods for testing purposes
 numpyMethodAnalogues = {
-    Vector.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
-    Vector.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
-    Vector.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
-    Vector.magnitude : lambda x, randvals : np.linalg.norm(x),
-    Vector.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
-    Vector.unit : lambda x, randvals : x / np.norm(x)
+    Vector_2D.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
+    Vector_2D.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
+    Vector_2D.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
+    Vector_2D.magnitude : lambda x, randvals : np.linalg.norm(x),
+    Vector_2D.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
+    Vector_2D.unit : lambda x, randvals : x / np.norm(x)
 }
 
 if __name__ == "__main__":
-    test = Vector(-1, -4)
-    test2 = Vector(3,4)
+    test = Vector_2D(-1, -4)
+    test2 = Vector_2D(3,4)
 
     test - test2

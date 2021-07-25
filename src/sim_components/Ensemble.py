@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 import environments as envs
 import Actors as actors
 import Rewards as rewards
-import config as conf
 import progressbar as pg
+import config as cfg
 
 
-np.random.seed(conf.seed) #dank
+
+np.random.seed(cfg.seed) #dank
 
 class InvalidObjectError(Exception):
     def __init__(self, message):
@@ -16,7 +17,7 @@ class InvalidObjectError(Exception):
 
 class Ensemble:
     '''Generic ensemble, container for all the machinery of simulations.'''
-    field_size = conf.field_size
+    field_size = cfg.field_size
 
     def __init__(self, actor_type, num_actors, reward_type = rewards.Food, reward_scarcity = 0.5, day_night = True):
         #Structure for day-night machinery
@@ -45,7 +46,7 @@ class Ensemble:
 
     def toArray(self, objects_type) -> list:
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
-        # TODO: Implement acceptable keywords with 
+        # TODO: Implement acceptable keywords with
         valids = ("actors", "rewards", "agents", "incentives")
         x, y = np.array([]), np.array([])
 
@@ -78,7 +79,7 @@ class Ensemble:
                 actor.move()
 
 
-    def DisplayConfig(self, save : bool = False, *args, **kwargs) -> None:
+    def Display_Config(self, save : bool = False, *args, **kwargs) -> None:
         fig, ax = self.Environment.plot(self.Environment.terrain)
 
         actor_x, actor_y = self.toArray("actors")
@@ -87,17 +88,17 @@ class Ensemble:
         #Draw the actors.
         ax.scatter(
             actor_x, actor_y,
-            marker = conf.actorPlottingConfig['marker'],
-            color = conf.actorPlottingConfig['color'],
-            label = conf.actorPlottingConfig['label']
+            marker = cfg.actorPlottingcfgig['marker'],
+            color = cfg.actorPlottingcfgig['color'],
+            label = cfg.actorPlottingcfgig['label']
         )
 
         #Draw the rewards
         ax.scatter(
             reward_x, reward_y,
-            marker = conf.foodPlottingConfig['marker'],
-            color = conf.foodPlottingConfig['color'],
-            label = conf.foodPlottingConfig['label']
+            marker = cfg.foodPlottingcfgig['marker'],
+            color = cfg.foodPlottingcfgig['color'],
+            label = cfg.foodPlottingcfgig['label']
         )
         #ax.scatter(reward_x, reward_y, 'bx')
         plt.legend(
@@ -136,5 +137,5 @@ if __name__ == "__main__":
     #a, b = ensembletest.toArray("actors")
     #c, d = ensembletest.toArray("rewards")
     #print(a, b, c, d)
-    ensembletest.DisplayConfig()
+    ensembletest.Displaycfgig()
 

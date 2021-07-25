@@ -1,13 +1,13 @@
 import numpy as np
 from enum import Enum, auto
-import config as cfg
+import json
 
-from positions import Vector
+from positions import Vector_2D
 
 # Import internal modules
 import Rewards as rewards
 
-class basicActor:
+class Basic_Actor:
     #Basic, short_sighted actor without complex behaviours
 
 
@@ -15,7 +15,7 @@ class basicActor:
 
         x = np.random.random() * field_size
         y = np.random.random() * field_size
-        self.position = Vector(x, y)
+        self.position = Vector_2D(x, y)
         self.stats = {'hunger' : 0,
                       'illness' : 0}
         self.found_food = [0, #Boolean if found
@@ -25,7 +25,7 @@ class basicActor:
         self.move_magnitude = 1
         self.sight_radius = 1
 
-    def detect_rewards(self, reward_array : list, print_result : bool = False) -> Vector:
+    def detect_rewards(self, reward_array : list, print_result : bool = False) -> Vector_2D:
         rewards_in_range = []
 
         for reward in reward_array:
