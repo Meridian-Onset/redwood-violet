@@ -1,6 +1,6 @@
 import numpy as np
 
-import config as cfg
+from ..configuration import config as cfg
 from positions import Vector
 
 class Instance:

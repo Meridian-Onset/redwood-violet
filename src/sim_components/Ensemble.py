@@ -5,7 +5,7 @@ import environments as envs
 import Actors as actors
 import Rewards as rewards
 import progressbar as pg
-import config as cfg
+from ..configuration import config as cfg
 
 
 
@@ -114,6 +114,7 @@ class Ensemble:
         fig, ax = self.Environment.plot()
 
     def animate(self, fig, ax) -> None:
+        pass
         #Draws changed
 
     # ! In Progress
@@ -137,5 +138,5 @@ if __name__ == "__main__":
     #a, b = ensembletest.toArray("actors")
     #c, d = ensembletest.toArray("rewards")
     #print(a, b, c, d)
-    ensembletest.Displaycfgig()
+    ensembletest.Display_Config()
 

@@ -1,7 +1,7 @@
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
-from config import field_size
+from .. import configuration as cfg
 from functools import wraps
 from promise import Promise
 
@@ -17,11 +17,11 @@ class PositionUnboundedError(Exception):
         super(PositionUnboundedError, self).__init__(self.message)
 
     def construct_message(self):
-        if self.bad_x > field_size | self.bad_x < 0:
+        if self.bad_x > cfg.field_size | self.bad_x < 0:
             x_message = f"x : {self.bad_x}\n"
         else : x_message = ""
 
-        if self.bad_y > field_size | self.bad_y < 0:
+        if self.bad_y > cfg.field_size | self.bad_y < 0:
             y_message = f"y : {self.bad_x}\n"
         else : y_message = ""
 
@@ -33,7 +33,7 @@ class Vector_2D:
     baked-in Cartesian calculations and boundary checking"""
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
-            if not (0 <= x < field_size) | (0 <= y < field_size):
+            if not (0 <= x < cfg.field_size) | (0 <= y < cfg.field_size):
                 raise PositionUnboundedError(x, y)
 
         except PositionUnboundedError:
