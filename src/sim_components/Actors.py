@@ -25,6 +25,10 @@ class Basic_Actor:
         self.move_magnitude = 1
         self.sight_radius = 1
 
+    def __str__(self):
+        print(self.position)
+        print([f"{key} : {self.stats[key]}" for key in self.stats.keys()])
+
     def detect_rewards(self, reward_array : list, print_result : bool = False) -> Vector_2D:
         rewards_in_range = []
 
@@ -40,6 +44,7 @@ class Basic_Actor:
         return rewards_in_range
 
     def move(self) -> None:
+        """Method that alters the position of the actor in place"""
         if self.found_food[0] == True:
             reward = self.found_food[1]
             self.x, self.y = reward.x, reward.y
@@ -51,24 +56,26 @@ class Basic_Actor:
             self.x += x_magnitude * self.move_magnitude
             self.y += y_magnitude * self.move_magnitude
 
+    def verbose(self) -> str:
+        pass
+
 
 if __name__ == "__main__":
-    try:
-        testActor = basicActor(100)
+    testActor = basicActor(100)
+    print(testActor)
+    #     reward_array_test = []
+    #     for _ in range(100): # Initialize test array
+    #         reward_array_test.append(rewards.Food(100))
 
-        reward_array_test = []
-        for _ in range(100): # Initialize test array
-            reward_array_test.append(rewards.Food(100))
-
-        for _ in range(10): #test for ten cycles
-            testActor.detect_reward(reward_array_test)
-            testActor.move()
-            for i in range(len(reward_array_test)):
-                if reward_array_test[i].eaten == True:
-                    del reward_array_test[i]
-            print(testActor.stats)
-    except Exception as err:
-        print(err)
+    #     for _ in range(10): #test for ten cycles
+    #         testActor.detect_reward(reward_array_test)
+    #         testActor.move()
+    #         for i in range(len(reward_array_test)):
+    #             if reward_array_test[i].eaten == True:
+    #                 del reward_array_test[i]
+    #         print(testActor.stats)
+    # except Exception as err:
+    #     print(err)
 
         #print(testActor.x, testActor.y)
 
