@@ -3,7 +3,7 @@
 import numpy as np
 from .. import configuration as cfg
 from functools import wraps
-from promise import Promise
+
 
 class PositionUnboundedError(Exception):
     """Ignorable exception sub-class for specifying invalid initialization parameters"""
