@@ -3,13 +3,13 @@
 
     "field_size" : 100,
 
-    "actorPlottingConfig" : {
+    "actor_plotting_config" : {
         "color" : "#3BEBA8",
         "marker" : "o",
         "label" : "actors"
     },
 
-    "foodPlottingConfig" : {
+    "food_plotting_config" : {
         "color" : "red",
         "marker" : "x",
         "label" : "food"

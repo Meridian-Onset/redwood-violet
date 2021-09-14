@@ -1,9 +1,9 @@
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
-from .. import configuration as cfg
+from configuration.config import conf as cfg
 from functools import wraps
-from promise import Promise
+# from promise import Promise
 
 class PositionUnboundedError(Exception):
     """Ignorable exception sub-class for specifying invalid initialization parameters"""
@@ -17,11 +17,11 @@ class PositionUnboundedError(Exception):
         super(PositionUnboundedError, self).__init__(self.message)
 
     def construct_message(self):
-        if self.bad_x > cfg.field_size | self.bad_x < 0:
+        if self.bad_x > cfg["field_size"] | self.bad_x < 0:
             x_message = f"x : {self.bad_x}\n"
         else : x_message = ""
 
-        if self.bad_y > cfg.field_size | self.bad_y < 0:
+        if self.bad_y > cfg["field_size"] | self.bad_y < 0:
             y_message = f"y : {self.bad_x}\n"
         else : y_message = ""
 
@@ -31,9 +31,10 @@ class PositionUnboundedError(Exception):
 class Vector_2D:
     """Generic position vector_2D class, designed to emulate a namedtuple, with
     baked-in Cartesian calculations and boundary checking"""
+    # field_size = cfg["field_size"]
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
-            if not (0 <= x < cfg.field_size) | (0 <= y < cfg.field_size):
+            if not (0 <= x < cfg["field_size"]) | (0 <= y < cfg["field_size"]):
                 raise PositionUnboundedError(x, y)
 
         except PositionUnboundedError:
@@ -42,6 +43,19 @@ class Vector_2D:
                 raise PositionUnboundedError(x, y)
         self.x = x
         self.y = y
+        self._getter_dict = {
+            "x" : self.x,
+            "y" : self.y
+            }
+
+    def keys(self):
+        return ["x", "y"]
+
+    def __getitem__(self, key):
+        return self._getter_dict[key]
+
+    def __iter__(self):
+        return iter((self.x, self.y))
 
     def __add__(self, other):
         return Vector_2D(
@@ -97,7 +111,10 @@ numpyMethodAnalogues = {
 }
 
 if __name__ == "__main__":
-    test = Vector_2D(-1, -4)
+    test = Vector_2D(7,6)
     test2 = Vector_2D(3,4)
 
-    test - test2
+    # print(test2.keys())
+    x, y = test2
+
+    print(x, y)
