@@ -3,6 +3,7 @@ import numpy as np
 from configuration import config as cfg
 from positions import Vector_2D
 
+
 class Instance:
     '''Standard reward type, no change to actor stats, food and poison inherit from this class''' # TODO : fix this to use the vector class
     def __init__(self, field_size, rotten_chance = 0):

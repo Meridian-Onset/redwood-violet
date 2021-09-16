@@ -1,9 +1,12 @@
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
-from configuration.config import conf as cfg
+
+import configuration.config as cfg
 from functools import wraps
-# from promise import Promise
+
+FIELD_SIZE = cfg.conf['field_size']
+
 
 class PositionUnboundedError(Exception):
     """Ignorable exception sub-class for specifying invalid initialization parameters"""
@@ -17,11 +20,12 @@ class PositionUnboundedError(Exception):
         super(PositionUnboundedError, self).__init__(self.message)
 
     def construct_message(self):
-        if self.bad_x > cfg["field_size"] | self.bad_x < 0:
+        if self.bad_x > FIELD_SIZE | self.bad_x < 0:
             x_message = f"x : {self.bad_x}\n"
         else : x_message = ""
 
-        if self.bad_y > cfg["field_size"] | self.bad_y < 0:
+        if self.bad_y > FIELD_SIZE | self.bad_y < 0:
+
             y_message = f"y : {self.bad_x}\n"
         else : y_message = ""
 
@@ -34,7 +38,8 @@ class Vector_2D:
     # field_size = cfg["field_size"]
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
-            if not (0 <= x < cfg["field_size"]) | (0 <= y < cfg["field_size"]):
+
+            if not (0 <= x < FIELD_SIZE) | (0 <= y < FIELD_SIZE):
                 raise PositionUnboundedError(x, y)
 
         except PositionUnboundedError:
@@ -111,10 +116,5 @@ numpyMethodAnalogues = {
 }
 
 if __name__ == "__main__":
-    test = Vector_2D(7,6)
-    test2 = Vector_2D(3,4)
+    print("Compiled")
 
-    # print(test2.keys())
-    x, y = test2
-
-    print(x, y)
