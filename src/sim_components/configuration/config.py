@@ -10,5 +10,4 @@ with open(butt) as f:
     conf = json.load(f)
 
 if __name__ == "__main__":
-    for key in conf.keys():
-        print(conf[key])
+    print(conf['field_size'])

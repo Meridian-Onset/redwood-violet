@@ -5,11 +5,11 @@ import environments as envs
 import Actors as actors
 import Rewards as rewards
 import progressbar as pg
-from ..configuration import config as cfg
+import configuration.config as cfg
 
 
 
-np.random.seed(cfg.seed) #dank
+np.random.seed(cfg.conf['seed']) #dank
 
 class InvalidObjectError(Exception):
     def __init__(self, message):
@@ -17,7 +17,7 @@ class InvalidObjectError(Exception):
 
 class Ensemble:
     '''Generic ensemble, container for all the machinery of simulations.'''
-    field_size = cfg.field_size
+    field_size = cfg.conf['field_size']
 
     def __init__(self, actor_type, num_actors, reward_type = rewards.Food, reward_scarcity = 0.5, day_night = True):
         #Structure for day-night machinery
@@ -82,23 +82,26 @@ class Ensemble:
     def Display_Config(self, save : bool = False, *args, **kwargs) -> None:
         fig, ax = self.Environment.plot(self.Environment.terrain)
 
+        actor_plotting_config = cfg.conf['actor_plotting_config']
+        food_plotting_config = cfg.conf['food_plotting_config']
+
         actor_x, actor_y = self.toArray("actors")
         reward_x, reward_y = self.toArray("rewards")
 
         #Draw the actors.
         ax.scatter(
             actor_x, actor_y,
-            marker = cfg.actorPlottingcfgig['marker'],
-            color = cfg.actorPlottingcfgig['color'],
-            label = cfg.actorPlottingcfgig['label']
+            marker = actor_plotting_config['marker'],
+            color = actor_plotting_config['color'],
+            label = actor_plotting_config['label']
         )
 
         #Draw the rewards
         ax.scatter(
             reward_x, reward_y,
-            marker = cfg.foodPlottingcfgig['marker'],
-            color = cfg.foodPlottingcfgig['color'],
-            label = cfg.foodPlottingcfgig['label']
+            marker = food_plotting_config['marker'],
+            color = food_plotting_config['color'],
+            label = food_plotting_config['label']
         )
         #ax.scatter(reward_x, reward_y, 'bx')
         plt.legend(

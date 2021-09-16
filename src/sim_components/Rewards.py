@@ -1,7 +1,6 @@
 import numpy as np
 
-from ..configuration import config as cfg
-from positions import Vector
+import configuration.config as cfg
 
 class Instance:
     '''Standard reward type, no change to actor stats, food and poison inherit from this class''' # TODO : fix this to use the vector class
