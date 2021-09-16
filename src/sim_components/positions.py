@@ -1,7 +1,7 @@
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
-import configuration.config as cfg
+from .configuration import config as cfg
 from functools import wraps
 
 FIELD_SIZE = cfg.conf['field_size']
@@ -68,7 +68,7 @@ class Vector_2D:
 
     @property
     def magnitude(self):
-        return self.distance_from(self, Vector_2D(0, 0))
+        return self.distance_from(Vector_2D(0, 0))
 
     @property
     def unit(self):
@@ -88,14 +88,14 @@ class Vector_2D:
         return np.arcsin(self.x/self.magnitude)
 
 #Dictionary of numpy analogues to the Vector_2D methods for testing purposes
-numpyMethodAnalogues = {
-    Vector_2D.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
-    Vector_2D.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
-    Vector_2D.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
-    Vector_2D.magnitude : lambda x, randvals : np.linalg.norm(x),
-    Vector_2D.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
-    Vector_2D.unit : lambda x, randvals : x / np.norm(x)
-}
+# numpyMethodAnalogues = {
+#     Vector_2D.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
+#     Vector_2D.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
+#     Vector_2D.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
+#     Vector_2D.magnitude : lambda x, randvals : np.linalg.norm(x),
+#     Vector_2D.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
+#     Vector_2D.unit : lambda x, randvals : x / np.norm(x)
+# }
 
 if __name__ == "__main__":
     print("Compiled")

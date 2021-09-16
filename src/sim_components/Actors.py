@@ -1,11 +1,13 @@
 import numpy as np
 from enum import Enum, auto
 import json
+from typing import Iterable
+from collections.abc import Iterable
 
-from positions import Vector_2D
+from .positions import Vector_2D
 
 # Import internal modules
-import Rewards as rewards
+from .Rewards import *
 
 class Basic_Actor:
     #Basic, short_sighted actor without complex behaviours
@@ -29,7 +31,7 @@ class Basic_Actor:
         print(self.position)
         print([f"{key} : {self.stats[key]}" for key in self.stats.keys()])
 
-    def detect_rewards(self, reward_array : list, print_result : bool = False) -> Vector_2D:
+    def detect_rewards(self, reward_array : Iterable[Instance], print_result : bool = False) -> Vector_2D:
         rewards_in_range = []
 
         for reward in reward_array:
@@ -61,7 +63,7 @@ class Basic_Actor:
 
 
 if __name__ == "__main__":
-    testActor = basicActor(100)
+    testActor = Basic_Actor(100)
     print(testActor)
     #     reward_array_test = []
     #     for _ in range(100): # Initialize test array

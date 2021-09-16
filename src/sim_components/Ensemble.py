@@ -44,7 +44,7 @@ class Ensemble:
     '''
 
 
-    def toArray(self, objects_type) -> list:
+    def toArray(self, objects_type) -> list(np.array, np.array):
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
         # TODO: Implement acceptable keywords with
         valids = ("actors", "rewards", "agents", "incentives")

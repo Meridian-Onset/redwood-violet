@@ -2,7 +2,11 @@
 
 import logging
 
-import sim_components as sim
+import sim_components.Actors as actors
+
+import_all = dict([(name, cls) for name, cls in actors.__dict__.items()])
+
 
 if __name__ == "__main__":
-    test.positions_test.VectorTimer()
+    print(import_all)
+
