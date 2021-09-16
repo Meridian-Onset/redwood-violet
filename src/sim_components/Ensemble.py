@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+import logging
+import colorama
+
 import environments as envs
 import Actors as actors
 import Rewards as rewards
 import progressbar as pg
 import configuration.config as cfg
-
-
 
 np.random.seed(cfg.conf['seed']) #dank
 
@@ -17,9 +18,10 @@ class InvalidObjectError(Exception):
 
 class Ensemble:
     '''Generic ensemble, container for all the machinery of simulations.'''
+
     field_size = cfg.conf['field_size']
 
-    def __init__(self, actor_type, num_actors, reward_type = rewards.Food, reward_scarcity = 0.5, day_night = True):
+    def __init__(self, actor_type, num_actors, reward_type = rewards.Instance, reward_scarcity = 0.5, day_night = True):
         #Structure for day-night machinery
         self.day = 0 #day counter
         self.dailyEpochs = {1 : 'Day', 2 : 'Night'} #TODO: add variability for day_night parameter
@@ -54,7 +56,7 @@ class Ensemble:
             array_length = len(self.players)
             x, y = np.empty(array_length), np.empty(array_length)
             for i, player in enumerate(self.players):
-                x[i], y[i] = player.x, player.y
+                x[i], y[i] = player.position
 
         elif objects_type.lower() in ("rewards", "incentives"):
             array_length = len(self.rewards)
@@ -137,9 +139,9 @@ class DependentFoodScarcityEnsemble(Ensemble):
         return('butts')
 
 if __name__ == "__main__":
-    ensembletest = Ensemble(actors.basicActor, 10)
-    #a, b = ensembletest.toArray("actors")
-    #c, d = ensembletest.toArray("rewards")
-    #print(a, b, c, d)
+    ensembletest = Ensemble(actors.Basic_Actor, 10)
+    # #a, b = ensembletest.toArray("actors")
+    # #c, d = ensembletest.toArray("rewards")
+    # #print(a, b, c, d)
+    logging.info('This is an info log')
     ensembletest.Display_Config()
-
