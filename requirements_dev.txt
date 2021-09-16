@@ -1,1 +1,6 @@
-pytest
+pytest==6.2.5
+flake8==3.9.2
+tox==3.24.3
+pytest-cov==2.12.1
+mypy==0.910
+pyflakes<2.4.0
