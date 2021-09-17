@@ -53,7 +53,7 @@ class Basic_Actor:
 
 
     def move(self) -> None:
-        """Method that alters the position of the actor in place"""
+        """Alters the position of the actor in place"""
         if self.found_food[0] == True:
             reward = self.found_food[1]
             self.x, self.y = reward.x, reward.y

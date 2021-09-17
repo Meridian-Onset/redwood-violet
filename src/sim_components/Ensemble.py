@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import List
 
+
 from .environments import environment as envs
 from .Actors import *
 from .Rewards import Instance
 from .progressbar import *
 from .configuration import config as cfg
-
 
 
 np.random.seed(cfg.conf['seed']) #dank
@@ -18,6 +18,7 @@ class InvalidObjectError(Exception):
 
 class Ensemble:
     '''Generic ensemble, container for all the machinery of simulations.'''
+
     field_size = cfg.conf['field_size']
 
     def __init__(self, actor_type, num_actors, reward_type=Instance, reward_scarcity=0.5, day_night=True):
@@ -140,5 +141,5 @@ if __name__ == "__main__":
     #a, b = ensembletest.toArray("actors")
     #c, d = ensembletest.toArray("rewards")
     #print(a, b, c, d)
-    ensembletest.Display_Config()
 
+    ensembletest.Display_Config()

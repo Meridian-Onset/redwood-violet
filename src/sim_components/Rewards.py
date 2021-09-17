@@ -24,7 +24,7 @@ class Instance:
                 'illness_token' : int(self.rotten)
                 })
 
-    def checkRotten(self) -> None:
+    def updateRotten(self) -> None:
         rand = np.random.random()
         if rand >= self.rotten_chance:
             self.rotten = True

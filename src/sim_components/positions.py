@@ -1,10 +1,11 @@
 # TODO: Allow checking for PositionUnboundedError when aligning move for actors
 
 import numpy as np
+
 from .configuration import config as cfg
-from functools import wraps
 
 FIELD_SIZE = cfg.conf['field_size']
+
 
 class PositionUnboundedError(Exception):
     """Ignorable exception sub-class for specifying invalid initialization parameters"""
@@ -32,8 +33,10 @@ class PositionUnboundedError(Exception):
 class Vector_2D:
     """Generic position vector_2D class, designed to emulate a namedtuple, with
     baked-in Cartesian calculations and boundary checking"""
+    # field_size = cfg["field_size"]
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
+
             if not (0 <= x < FIELD_SIZE) or not (0 <= y < FIELD_SIZE):
                 raise PositionUnboundedError(x, y)
 
@@ -43,6 +46,19 @@ class Vector_2D:
                 raise PositionUnboundedError(x, y)
         self.x = x
         self.y = y
+        self._getter_dict = {
+            "x" : self.x,
+            "y" : self.y
+            }
+
+    def keys(self):
+        return ["x", "y"]
+
+    def __getitem__(self, key):
+        return self._getter_dict[key]
+
+    def __iter__(self):
+        return iter((self.x, self.y))
 
      #TODO: make class iterable for unpacking in ensemble
     def __iter__(self):
@@ -103,3 +119,4 @@ class Vector_2D:
 
 if __name__ == "__main__":
     print("Compiled")
+
