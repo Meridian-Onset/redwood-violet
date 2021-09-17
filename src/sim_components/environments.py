@@ -4,7 +4,8 @@ in simulations.'''
 import numpy as np
 import matplotlib.pyplot as plt
 
-import Actors
+from .Actors import Basic_Actor
+from .positions import Vector_2D
 
 
 class environment:
@@ -12,12 +13,12 @@ class environment:
         self.xLimit = xLimit
         self.ylimit = yLimit
 
-        self.terrain = {}
+        self.terrain : dict[str : Vector_2D] = {}
 
     def terrainFiller(self):
         pass
 
-    def plot(self, showEnv : bool = False, *args, **kwargs) -> tuple:
+    def plot(self, showEnv : bool = False, *args, **kwargs) -> tuple[plt.Figure, plt.Axes]:
         '''Generate and return a matplotlib plot. NOTE: Extra args and kwargs
         passed to the initial ax.scatter calls'''
         fig, ax = plt.subplots(facecolor='#1f233a')

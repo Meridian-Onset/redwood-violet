@@ -2,8 +2,7 @@
 
 import numpy as np
 
-import configuration.config as cfg
-from functools import wraps
+from .configuration import config as cfg
 
 FIELD_SIZE = cfg.conf['field_size']
 
@@ -20,12 +19,11 @@ class PositionUnboundedError(Exception):
         super(PositionUnboundedError, self).__init__(self.message)
 
     def construct_message(self):
-        if self.bad_x > FIELD_SIZE | self.bad_x < 0:
+        if self.bad_x > FIELD_SIZE or self.bad_x < 0:
             x_message = f"x : {self.bad_x}\n"
         else : x_message = ""
 
-        if self.bad_y > FIELD_SIZE | self.bad_y < 0:
-
+        if self.bad_y > FIELD_SIZE or self.bad_y < 0:
             y_message = f"y : {self.bad_x}\n"
         else : y_message = ""
 
@@ -39,7 +37,7 @@ class Vector_2D:
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
 
-            if not (0 <= x < FIELD_SIZE) | (0 <= y < FIELD_SIZE):
+            if not (0 <= x < FIELD_SIZE) or not (0 <= y < FIELD_SIZE):
                 raise PositionUnboundedError(x, y)
 
         except PositionUnboundedError:
@@ -61,6 +59,10 @@ class Vector_2D:
 
     def __iter__(self):
         return iter((self.x, self.y))
+
+     #TODO: make class iterable for unpacking in ensemble
+    def __iter__(self):
+        return iter([self.x, self.y])
 
     def __add__(self, other):
         return Vector_2D(
@@ -86,7 +88,7 @@ class Vector_2D:
 
     @property
     def magnitude(self):
-        return self.distance_from(self, Vector_2D(0, 0))
+        return self.distance_from(Vector_2D(0, 0))
 
     @property
     def unit(self):
@@ -106,14 +108,14 @@ class Vector_2D:
         return np.arcsin(self.x/self.magnitude)
 
 #Dictionary of numpy analogues to the Vector_2D methods for testing purposes
-numpyMethodAnalogues = {
-    Vector_2D.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
-    Vector_2D.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
-    Vector_2D.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
-    Vector_2D.magnitude : lambda x, randvals : np.linalg.norm(x),
-    Vector_2D.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
-    Vector_2D.unit : lambda x, randvals : x / np.norm(x)
-}
+# numpyMethodAnalogues = {
+#     Vector_2D.__add__ : lambda x, randvals : np.add(x, np.array(randvals)),
+#     Vector_2D.__sub__ : lambda x, randvals : np.subtract(x, np.array(randvals)),
+#     Vector_2D.__mul__ : lambda x, randvals : np.dot(x, np.array(randvals)),
+#     Vector_2D.magnitude : lambda x, randvals : np.linalg.norm(x),
+#     Vector_2D.distance_from : lambda x, randvals : np.linalg.norm(x - np.array(randvals)),
+#     Vector_2D.unit : lambda x, randvals : x / np.norm(x)
+# }
 
 if __name__ == "__main__":
     print("Compiled")

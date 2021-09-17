@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import List
 
-import logging
-import colorama
 
-import environments as envs
-import Actors as actors
-import Rewards as rewards
-import progressbar as pg
-import configuration.config as cfg
+from .environments import environment as envs
+from .Actors import *
+from .Rewards import Instance
+from .progressbar import *
+from .configuration import config as cfg
+
 
 np.random.seed(cfg.conf['seed']) #dank
 
@@ -21,13 +21,13 @@ class Ensemble:
 
     field_size = cfg.conf['field_size']
 
-    def __init__(self, actor_type, num_actors, reward_type = rewards.Instance, reward_scarcity = 0.5, day_night = True):
+    def __init__(self, actor_type, num_actors, reward_type=Instance, reward_scarcity=0.5, day_night=True):
         #Structure for day-night machinery
         self.day = 0 #day counter
-        self.dailyEpochs = {1 : 'Day', 2 : 'Night'} #TODO: add variability for day_night parameter
+        self.dailyEpochs = {1: 'Day', 2: 'Night'} #TODO: add variability for day_night parameter
 
         #Build simulation terrain
-        self.Environment = envs.environment(*[self.field_size]*2)
+        self.Environment = envs(*[self.field_size]*2)
 
         #Initiate actors and rewards
         self.players = list()
@@ -40,13 +40,11 @@ class Ensemble:
         #Set `Ensemble` specfic documentation path
         self.docPath = '../docs/Ensemble.md'
 
-    '''        self.rewards = list()
-        for i in range(int(self.reward_scarcity * num_actors)):
-            self.rewards.append(reward_type(self.field_size))
-    '''
+        #     self.rewards = list()
+        # for i in range(int(self.reward_scarcity * num_actors)):
+        #     self.rewards.append(reward_type(self.field_size))
 
-
-    def toArray(self, objects_type) -> list:
+    def toArray(self, objects_type) -> list[np.array, np.array]:
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
         # TODO: Implement acceptable keywords with
         valids = ("actors", "rewards", "agents", "incentives")
@@ -67,7 +65,7 @@ class Ensemble:
         else: raise InvalidObjectError(f"Not a valid object type, use one of the following: \n {valids}")
         return[x, y]
 
-    def start(self, cycles : int, buildVideo = False) -> None:
+    def start(self, cycles: int, buildVideo=False) -> None:
         #TODO:
         '''Main simulation machinery'''
         i = 0 #progress counter
@@ -80,8 +78,7 @@ class Ensemble:
             for actor in self.players:
                 actor.move()
 
-
-    def Display_Config(self, save : bool = False, *args, **kwargs) -> None:
+    def Display_Config(self, save: bool=False, *args, **kwargs) -> None:
         fig, ax = self.Environment.plot(self.Environment.terrain)
 
         actor_plotting_config = cfg.conf['actor_plotting_config']
@@ -93,19 +90,19 @@ class Ensemble:
         #Draw the actors.
         ax.scatter(
             actor_x, actor_y,
-            marker = actor_plotting_config['marker'],
-            color = actor_plotting_config['color'],
-            label = actor_plotting_config['label']
+            marker=actor_plotting_config['marker'],
+            color=actor_plotting_config['color'],
+            label=actor_plotting_config['label']
         )
 
         #Draw the rewards
         ax.scatter(
             reward_x, reward_y,
-            marker = food_plotting_config['marker'],
-            color = food_plotting_config['color'],
-            label = food_plotting_config['label']
+            marker=food_plotting_config['marker'],
+            color=food_plotting_config['color'],
+            label=food_plotting_config['label']
         )
-        #ax.scatter(reward_x, reward_y, 'bx')
+
         plt.legend(
             bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
             ncol=2, mode="expand", borderaxespad=0.
@@ -132,6 +129,7 @@ class Ensemble:
         except FileNotFoundError:
             print('Documentation missing, check integrity of filesystem')
 
+
 class DependentFoodScarcityEnsemble(Ensemble):
     #TODO: Write this class that has the food scarcity change depending on the amount of food leftover
     #the previous day
@@ -139,9 +137,9 @@ class DependentFoodScarcityEnsemble(Ensemble):
         return('butts')
 
 if __name__ == "__main__":
-    ensembletest = Ensemble(actors.Basic_Actor, 10)
-    # #a, b = ensembletest.toArray("actors")
-    # #c, d = ensembletest.toArray("rewards")
-    # #print(a, b, c, d)
-    logging.info('This is an info log')
+    ensembletest = Ensemble(Basic_Actor, 10)
+    #a, b = ensembletest.toArray("actors")
+    #c, d = ensembletest.toArray("rewards")
+    #print(a, b, c, d)
+
     ensembletest.Display_Config()

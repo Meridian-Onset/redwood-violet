@@ -5,3 +5,13 @@
 pycache
 
 *scratchpad*
+
+.mypy_cache
+
+.pytest_cache
+
+.tox
+
+.coverage
+
+UNKNOWN.egg-info
