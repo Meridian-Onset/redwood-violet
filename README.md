@@ -1,4 +1,4 @@
-# redwood-violet
+# redwood-violet 🌳
 ![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg)
 
 The intention behind this library is to serve as a modular, behavioural simulations library. 
