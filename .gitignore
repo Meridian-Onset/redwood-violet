@@ -5,3 +5,9 @@
 pycache
 
 *scratchpad*
+
+.mypy_cache
+
+.pytest_cache
+
+.coverage
