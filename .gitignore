@@ -10,4 +10,8 @@ pycache
 
 .pytest_cache
 
+.tox
+
 .coverage
+
+UNKNOWN.egg-info
