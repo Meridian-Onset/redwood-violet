@@ -4,8 +4,8 @@ in simulations.'''
 import numpy as np
 import matplotlib.pyplot as plt
 
-import Actors
-from sim_components.positions import Vector_2D
+from .Actors import Basic_Actor
+from .positions import Vector_2D
 
 
 class environment:
@@ -18,7 +18,7 @@ class environment:
     def terrainFiller(self):
         pass
 
-    def plot(self, showEnv : bool = False, *args, **kwargs) -> tuple(plt.Figure, plt.Axes):
+    def plot(self, showEnv : bool = False, *args, **kwargs) -> tuple[plt.Figure, plt.Axes]:
         '''Generate and return a matplotlib plot. NOTE: Extra args and kwargs
         passed to the initial ax.scatter calls'''
         fig, ax = plt.subplots(facecolor='#1f233a')

@@ -18,11 +18,11 @@ class PositionUnboundedError(Exception):
         super(PositionUnboundedError, self).__init__(self.message)
 
     def construct_message(self):
-        if self.bad_x > FIELD_SIZE | self.bad_x < 0:
+        if self.bad_x > FIELD_SIZE or self.bad_x < 0:
             x_message = f"x : {self.bad_x}\n"
         else : x_message = ""
 
-        if self.bad_y > FIELD_SIZE | self.bad_y < 0:
+        if self.bad_y > FIELD_SIZE or self.bad_y < 0:
             y_message = f"y : {self.bad_x}\n"
         else : y_message = ""
 
@@ -34,7 +34,7 @@ class Vector_2D:
     baked-in Cartesian calculations and boundary checking"""
     def __init__(self, x, y, allow_out_of_bounds = False):
         try:
-            if not (0 <= x < FIELD_SIZE) | (0 <= y < FIELD_SIZE):
+            if not (0 <= x < FIELD_SIZE) or not (0 <= y < FIELD_SIZE):
                 raise PositionUnboundedError(x, y)
 
         except PositionUnboundedError:
@@ -43,6 +43,10 @@ class Vector_2D:
                 raise PositionUnboundedError(x, y)
         self.x = x
         self.y = y
+
+     #TODO: make class iterable for unpacking in ensemble
+    def __iter__(self):
+        return iter([self.x, self.y])
 
     def __add__(self, other):
         return Vector_2D(
