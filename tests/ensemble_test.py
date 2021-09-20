@@ -1,5 +1,9 @@
-from src.sim_components.Ensemble import Ensemble
-from src.sim_components.Actors import Basic_Actor
+# import src.sim_components as sc
+
+from src.sim_components.Ensemble import *
+from src.sim_components.Actors import *
+from src.sim_components.environments import *
+
 
 def test_initialisation():
     # Assert that ensemble initialises correctly and runs all different vanilla methods

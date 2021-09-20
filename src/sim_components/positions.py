@@ -9,24 +9,19 @@ FIELD_SIZE = cfg.conf['field_size']
 class PositionUnboundedError(Exception):
     """Ignorable exception sub-class for specifying invalid initialization parameters TODO: Only pass in bad params"""
     def __init__(self, bad_positions : Dict[str, float], message = None):
-        self._x = x
-        self._y = y
+        
+        self.bad_positions = bad_positions
         if message is None:
             self.message = self.construct_message()
 
         super(PositionUnboundedError, self).__init__(self.message)
 
-    #TODO: Redo this unnecessary shit
     def construct_message(self):
-        if self.bad_x > FIELD_SIZE or self.bad_x < 0:
-            x_message = f"x : {self._x}\n"
-        else : x_message = ""
+        iter_message = ""
+        for key in self.bad_positions.keys():
+            iter_message = iter_message + f"\n{key} : {self.bad_positions[key]}"
 
-        if self.bad_y > FIELD_SIZE or self.bad_y < 0:
-            y_message = f"y : {self._x}\n"
-        else : y_message = ""
-
-        return(f"Position outside simulation boundaries with {x_message}{y_message}")
+        return(f"Position outside simulation boundaries with {iter_message}")
 
 
 class Vector_2D:
@@ -111,5 +106,8 @@ class Vector_2D:
 # }
 
 if __name__ == "__main__":
-    print("Compiled")
+    positions = {'x' : 1}
+    positions2 = {'x' : 2, 'y' : 3}
+    positions3 = {'y' : 4}
+    
 

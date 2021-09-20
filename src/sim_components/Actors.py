@@ -4,14 +4,12 @@ import json
 from typing import Iterable
 from collections.abc import Iterable
 
-from positions import PositionUnboundedError, Vector_2D
-
 # Import internal modules
-from Rewards import *
+from Rewards import Instance
+from positions import PositionUnboundedError, Vector_2D
 
 class Basic_Actor:
     #Basic, short_sighted actor without complex behaviours
-
 
     def __init__(self, field_size: int):
 
@@ -20,10 +18,11 @@ class Basic_Actor:
         self.position = Vector_2D(x, y)
         self.stats = {'hunger' : 0,
                       'illness' : 0}
-        self.found_food = [0, #Boolean if found
-            None
-        ]
-
+        self.found_food = {
+            'found_flag' : 0,#Boolean if found
+            'finding_position' : Vector_2D(0,0) # Default position
+        }
+        # TODO: Move these into config files!
         self.move_magnitude = 1
         self.sight_radius = 1
 
@@ -54,9 +53,10 @@ class Basic_Actor:
 
     def move(self) -> None:
         """Alters the position of the actor in place"""
-        if self.found_food[0] == True:
-            reward = self.found_food[1]
-            self.x, self.y = reward.x, reward.y
+        if self.found_food['found_flag'] == True:
+            reward = self.found_food['finding_position']
+            #TODO: This shouldn't be an instantaneous change (original implementation was an edge case where sight radius is equal to move radius). Should change some kind of pointer
+            self.x, self.y = reward
             stats_change = reward.consume() # pop the stats out of the reward object
             self.stats['hunger'] += stats_change['hunger_token']
         else :
@@ -64,8 +64,10 @@ class Basic_Actor:
             try:
                 self.position = self.position + increment
             except PositionUnboundedError as err:
-                self.p
-
+                #TODO: Somehow iterate on increment here. Should be some way to clean this up. 
+                #TODO: Alternate case where actor crosses boundary back into the environment on the other side (continuity)
+                pass
+            
     def verbose(self) -> str:
         pass
 

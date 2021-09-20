@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Dict
 
 from configuration import config as cfg
 from positions import Vector_2D
@@ -16,7 +17,7 @@ class Instance:
         self.rotten = (np.random.random() < rotten_chance)
         self.eaten = False
 
-    def consume(self) -> dict[str , float]:
+    def consume(self) -> Dict[str, float]:
         """The consume method pops the attribute additives to the consumer."""
         self.eaten = True #value to apply a mask to in ensemble object
         return({

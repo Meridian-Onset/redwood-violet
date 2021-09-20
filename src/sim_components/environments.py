@@ -3,6 +3,7 @@ in simulations.'''
 
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import Dict
 
 from Actors import Basic_Actor
 from positions import Vector_2D
@@ -13,7 +14,7 @@ class environment:
         self.xLimit = xLimit
         self.ylimit = yLimit
 
-        self.terrain : dict[str : Vector_2D] = {}
+        self.terrain : Dict[str, Vector_2D] = {}
 
     def terrainFiller(self):
         pass
@@ -58,4 +59,4 @@ if __name__ == "__main__":
 
     testEnv = environment(1000, 1000)
 
-    testEnv.plot(testTerrain, showEnv = True)
+    testEnv.plot(showEnv = True)
