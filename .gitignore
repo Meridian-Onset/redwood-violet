@@ -19,3 +19,7 @@ UNKNOWN.egg-info
 .vscode/**/*
 !.vscode/settings.json
 !.vscode/launch.json
+
+#ignore dev-env virtual environment
+.venv/dev-env 
+.venv
