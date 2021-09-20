@@ -5,8 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import Dict
 
-from Actors import Basic_Actor
-from positions import Vector_2D
+from sim_components.Actors import Basic_Actor
+from sim_components.positions import Vector_2D
 
 
 class environment:

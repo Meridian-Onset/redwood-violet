@@ -1,8 +1,8 @@
 import numpy as np
 from typing import Dict
 
-from configuration import config as cfg
-from positions import Vector_2D
+from sim_components.configuration import config as cfg
+from sim_components.positions import Vector_2D
 
 NUTRITIVE_VALUE = cfg.conf['food_values']['default_nutritive_value']
 

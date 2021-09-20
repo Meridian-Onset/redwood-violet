@@ -5,8 +5,8 @@ from typing import Iterable
 from collections.abc import Iterable
 
 # Import internal modules
-from Rewards import Instance
-from positions import PositionUnboundedError, Vector_2D
+from sim_components.Rewards import Instance
+from sim_components.positions import PositionUnboundedError, Vector_2D
 
 class Basic_Actor:
     #Basic, short_sighted actor without complex behaviours
@@ -27,8 +27,8 @@ class Basic_Actor:
         self.sight_radius = 1
 
     def __str__(self):
-        print(self.position)
-        print([f"{key} : {self.stats[key]}" for key in self.stats.keys()])
+        # print(self.position)
+        return(str([f"{key} : {self.stats[key]}" for key in self.stats.keys()]) + '\n' + str(self.position))
 
     def detect_rewards(self, reward_array: Iterable[Instance], print_result: bool=False) -> Vector_2D:
         rewards_in_range = []
