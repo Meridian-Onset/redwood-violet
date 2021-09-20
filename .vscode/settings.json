@@ -4,5 +4,5 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.pythonPath": ".venv/dev-env/bin/python3.9"
+    "python.pythonPath": ".venv/dev-env/bin/python"
 }
