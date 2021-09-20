@@ -4,10 +4,10 @@ import json
 from typing import Iterable
 from collections.abc import Iterable
 
-from .positions import PositionUnboundedError, Vector_2D
+from positions import PositionUnboundedError, Vector_2D
 
 # Import internal modules
-from .Rewards import *
+from Rewards import *
 
 class Basic_Actor:
     #Basic, short_sighted actor without complex behaviours
@@ -64,7 +64,7 @@ class Basic_Actor:
             try:
                 self.position = self.position + increment
             except PositionUnboundedError as err:
-
+                self.p
 
     def verbose(self) -> str:
         pass

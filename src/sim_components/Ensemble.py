@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 from typing import List
 
 
-from .environments import environment as envs
-from .Actors import *
-from .Rewards import Instance
-from .progressbar import *
-from .configuration import config as cfg
+from environments import environment as envs
+from Actors import *
+from Rewards import Instance
+from progressbar import *
+from configuration import config as cfg
 
 
 np.random.seed(cfg.conf['seed']) #dank

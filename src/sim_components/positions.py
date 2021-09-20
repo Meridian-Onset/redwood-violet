@@ -1,30 +1,29 @@
-# TODO: Allow checking for PositionUnboundedError when aligning move for actors
-
 import numpy as np
+from typing import Dict
 
-from .configuration import config as cfg
+from configuration import config as cfg
 
 FIELD_SIZE = cfg.conf['field_size']
 
 
 class PositionUnboundedError(Exception):
-    """Ignorable exception sub-class for specifying invalid initialization parameters"""
-    def __init__(self, x, y, message = None):
-        self.bad_x = x
-        self.bad_y = y
+    """Ignorable exception sub-class for specifying invalid initialization parameters TODO: Only pass in bad params"""
+    def __init__(self, bad_positions : Dict[str, float], message = None):
+        self._x = x
+        self._y = y
         if message is None:
-            message = self.construct_message()
-        self.message = message
+            self.message = self.construct_message()
 
         super(PositionUnboundedError, self).__init__(self.message)
 
+    #TODO: Redo this unnecessary shit
     def construct_message(self):
         if self.bad_x > FIELD_SIZE or self.bad_x < 0:
-            x_message = f"x : {self.bad_x}\n"
+            x_message = f"x : {self._x}\n"
         else : x_message = ""
 
         if self.bad_y > FIELD_SIZE or self.bad_y < 0:
-            y_message = f"y : {self.bad_x}\n"
+            y_message = f"y : {self._x}\n"
         else : y_message = ""
 
         return(f"Position outside simulation boundaries with {x_message}{y_message}")
@@ -33,17 +32,15 @@ class PositionUnboundedError(Exception):
 class Vector_2D:
     """Generic position vector_2D class, designed to emulate a namedtuple, with
     baked-in Cartesian calculations and boundary checking"""
-    # field_size = cfg["field_size"]
+
     def __init__(self, x, y, allow_out_of_bounds = False):
-        try:
 
-            if not (0 <= x < FIELD_SIZE) or not (0 <= y < FIELD_SIZE):
-                raise PositionUnboundedError(x, y)
-
-        except PositionUnboundedError:
-            if allow_out_of_bounds: pass
-            else:
-                raise PositionUnboundedError(x, y)
+        bad_params = dict()
+        if not (0 <= x < FIELD_SIZE): bad_params['x']= x
+        if not (0 <= y < FIELD_SIZE): bad_params['y']= y
+        if len(bad_params) != 0 and not allow_out_of_bounds:
+            raise PositionUnboundedError(bad_params)
+            
         self.x = x
         self.y = y
         self._getter_dict = {
@@ -57,10 +54,6 @@ class Vector_2D:
     def __getitem__(self, key):
         return self._getter_dict[key]
 
-    def __iter__(self):
-        return iter((self.x, self.y))
-
-     #TODO: make class iterable for unpacking in ensemble
     def __iter__(self):
         return iter([self.x, self.y])
 

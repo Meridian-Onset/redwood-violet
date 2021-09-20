@@ -1,7 +1,7 @@
 import numpy as np
 
-from .configuration import config as cfg
-from .positions import Vector_2D
+from configuration import config as cfg
+from positions import Vector_2D
 
 NUTRITIVE_VALUE = cfg.conf['food_values']['default_nutritive_value']
 

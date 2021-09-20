@@ -4,8 +4,8 @@ in simulations.'''
 import numpy as np
 import matplotlib.pyplot as plt
 
-from .Actors import Basic_Actor
-from .positions import Vector_2D
+from Actors import Basic_Actor
+from positions import Vector_2D
 
 
 class environment:
