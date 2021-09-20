@@ -15,3 +15,7 @@ pycache
 .coverage
 
 UNKNOWN.egg-info
+
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/launch.json
