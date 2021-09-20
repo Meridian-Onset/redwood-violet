@@ -1,7 +1,7 @@
 import numpy as np
 from typing import Dict
 
-from configuration import config as cfg
+from sim_components.configuration import config as cfg
 
 FIELD_SIZE = cfg.conf['field_size']
 

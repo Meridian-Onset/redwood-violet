@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from typing import List
 
 
-from environments import environment as envs
-from Actors import Basic_Actor
-from Rewards import Instance
-from progressbar import *
-from configuration import config as cfg
+from sim_components.environments import environment as envs
+from sim_components.Actors import Basic_Actor
+from sim_components.Rewards import Instance
+from sim_components.progressbar import *
+from sim_components.configuration import config as cfg
 
 
 np.random.seed(cfg.conf['seed']) #dank
