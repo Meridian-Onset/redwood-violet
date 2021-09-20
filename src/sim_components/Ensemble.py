@@ -1,10 +1,11 @@
 import numpy as np
+import numpy.typing as npt
 import matplotlib.pyplot as plt
 from typing import List
 
 
 from environments import environment as envs
-from Actors import *
+from Actors import Basic_Actor
 from Rewards import Instance
 from progressbar import *
 from configuration import config as cfg
@@ -44,7 +45,7 @@ class Ensemble:
         # for i in range(int(self.reward_scarcity * num_actors)):
         #     self.rewards.append(reward_type(self.field_size))
 
-    def toArray(self, objects_type) -> list[np.array, np.array]:
+    def toArray(self, objects_type: str) -> List[npt.ArrayLike]:
         '''Return the x and y coordinates, as arrays, of the specified simulation objects'''
         # TODO: Implement acceptable keywords with
         valids = ("actors", "rewards", "agents", "incentives")
@@ -60,7 +61,7 @@ class Ensemble:
             array_length = len(self.rewards)
             x, y = np.empty(array_length), np.empty(array_length)
             for i, reward in enumerate(self.rewards):
-                x[i], y[i] = reward.x, reward.y
+                x[i], y[i] = reward.position
 
         else: raise InvalidObjectError(f"Not a valid object type, use one of the following: \n {valids}")
         return[x, y]
@@ -128,6 +129,9 @@ class Ensemble:
                 docText = f.read()
         except FileNotFoundError:
             print('Documentation missing, check integrity of filesystem')
+            
+    def verbose(self):
+        pass
 
 
 class DependentFoodScarcityEnsemble(Ensemble):
