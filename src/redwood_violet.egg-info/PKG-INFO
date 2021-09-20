@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: redwood-violet
+Version: 0.0.0
+Summary: Modular behavioral simulations library
+Home-page: UNKNOWN
+Author: Jonathan Wright (@Meridian-Onset)
+License: MIT
+Platform: osx
+Platform: linux
+Platform: win32
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Provides-Extra: testing
+License-File: LICENSE
+
+UNKNOWN
+
