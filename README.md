@@ -1,6 +1,9 @@
 # redwood-violet 🌳
 ![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg)
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+
+
 The intention behind this library is to serve as a modular, behavioural simulations library. 
 
 ## Components
