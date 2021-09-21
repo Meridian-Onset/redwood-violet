@@ -17,4 +17,4 @@ def test_initialisation():
     assert len(ensemble_arrays[1]) == 100
 
     ensemble_for_testing.start(100)
-    #ßassert isinstance(ensemble_for_testing, Ensemble)
+    assert isinstance(ensemble_for_testing, Ensemble)
