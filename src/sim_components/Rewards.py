@@ -6,9 +6,11 @@ from sim_components.positions import Vector_2D
 
 NUTRITIVE_VALUE = cfg.conf['food_values']['default_nutritive_value']
 
+
 class Instance:
-    '''Standard reward type, no change to actor stats, food and poison inherit from this class''' # TODO : fix this to use the vector class
-    def __init__(self, field_size, rotten_chance = 0):
+    '''Standard reward type, no change to actor stats, food and poison inherit from this class'''
+
+    def __init__(self, field_size, rotten_chance=0):
         x = np.random.random() * field_size
         y = np.random.random() * field_size
 
@@ -19,13 +21,17 @@ class Instance:
 
     def consume(self) -> Dict[str, float]:
         """The consume method pops the attribute additives to the consumer."""
-        self.eaten = True #value to apply a mask to in ensemble object
+        self.eaten = True  # value to apply a mask to in ensemble object
         return({
-                'hunger_token' : NUTRITIVE_VALUE,
-                'illness_token' : int(self.rotten)
+                'hunger_token': NUTRITIVE_VALUE,
+                'illness_token': int(self.rotten)
                 })
 
     def updateRotten(self) -> None:
         rand = np.random.random()
         if rand >= self.rotten_chance:
             self.rotten = True
+
+
+if __name__ == "main":
+    pass

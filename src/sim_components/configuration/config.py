@@ -10,4 +10,3 @@ with open(butt) as f:
 
 if __name__ == "__main__":
     print(conf['field_size'])
-
