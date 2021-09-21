@@ -1,4 +1,5 @@
 LICENSE
+MANIFEST.in
 README.md
 pyproject.toml
 setup.cfg
@@ -18,4 +19,5 @@ src/sim_components/positions.py
 src/sim_components/progressbar.py
 src/sim_components/py.typed
 src/sim_components/configuration/__init__.py
+src/sim_components/configuration/cfg.json
 src/sim_components/configuration/config.py
