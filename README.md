@@ -43,7 +43,7 @@ Next we want to create a virtual environment in which we can run the library in 
 - `python3 -m venv dev-env`
 
 Next, if on Windows, run the following:
-`dev-env\Scripts\activate.bat`
+`dev-env\Scripts\activate.bat` (change the `.bat` to `.ps1` if using powershell)
 
 On UNIX or macOS, run this instead:
 `source dev-env/bin/activate`
@@ -56,7 +56,7 @@ You should now see that your terminal shows `(dev-env)` at the beginning of the 
 
 Next we run the preliminary installation commands (in the main directory):
 
-- `pip install -r requirements_dev`
+- `pip install -r requirements_dev.txt`
 - `pip install -e .`
 
 The second command installs the library in editable mode, which is necessary for development.
