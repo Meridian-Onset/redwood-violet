@@ -1,24 +1,24 @@
 # redwood-violet 🌳
-![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg) ![Monthly Contributions](https://img.shields.io/github/commit-activity/m/Meridian-Onset/redwood-violet?label=Commit%20Activity&logo=Github&logoColor=lightgray) ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg) 
+![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg) ![Monthly Contributions](https://img.shields.io/github/commit-activity/m/Meridian-Onset/redwood-violet?label=Commit%20Activity&logo=Github&logoColor=lightgray) ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)
 
-The intention behind this library is to serve as a modular, behavioural simulations library. 
+The intention behind this library is to serve as a modular, behavioral simulation library.
 
-**What is a behavioural simulation?**
+**What is a behavioral simulation?**
 
-A behavioural simulation is a simulation of a group of agents with varying characteristics. The characteristics that can vary between each agent or groups of agents include:
+A behavioral simulation is a simulation of a group of agents with varying characteristics. The characteristics that can vary between each agent or groups of agents include:
 
 - Physiological:
   - Range of sight
   - Olfactory senses
   - Movement speed
-- Behavioural/Psychological, for example:
+- Behavioral/Psychological, for example:
   - Family structures
   - Sharing and caring
   - Resting tendencies (e.g. nocturnal)
 
 In addition to variations between actors, the environment also changes. Which can lead to advantages or disadvantages for different traits that can be documented.
 
-**Why are behavioural simulations interesting?**
+**Why are behavioral simulations interesting?**
 
 In comparing the evolution of various quantities, like population of competing groups, over large periods of time, we can potentially see how/why certain characteristics emerged during human/more general evolution.
 
@@ -26,7 +26,7 @@ Having said that, this software is not intended as a means to simulate the entir
 
 *Please note* that this project was, in part, inspired by the work of the creator of [Primer](https://www.youtube.com/channel/UCKzJFdi57J53Vr_BkTfN3uQ).
 
-The hope for the open-source nature of this repository is that you and others use the framework already laid out as inspiration to ask your own questions. 
+The hope for the open-source nature of this repository is that you and others use the framework already laid out as inspiration to ask your own questions.
 
 Using the library, you can create your own custom simulations and share them with the community. Reusable parts of your simulation should be integrated into the main library for others to use
 
@@ -40,15 +40,15 @@ Start by cloning the GH repo to local directory with
 Next we want to create a virtual environment in which we can run the library in editable mode. To do this, navigate to the repository and create a sub-directory called `.venv`. Now run the following commands in your terminal
 
 - `cd .venv` (from main directory)
-- `python3 -m venv dev-env` 
+- `python3 -m venv dev-env`
 
 Next, if on Windows, run the following:
 `dev-env\Scripts\activate.bat`
 
-On UNIX or MacOS, run this instead:
+On UNIX or macOS, run this instead:
 `source dev-env/bin/activate`
 
-You should now see that your terminal shows `(dev-env)` at the beginning of the command line, meaning that your development environment is ready. 
+You should now see that your terminal shows `(dev-env)` at the beginning of the command line, meaning that your development environment is ready.
 
 **Note:** To verify that your development environment has been successfully created, run the following two commands and verify that their output paths point to your virtual environment path
 1. `pip -V` (note the capital V)
@@ -67,15 +67,15 @@ If you'd like to find out more about contributing to this project, consult the `
 
 ## Components
 
-The library consists of a number of components. The top-level componenent is the `ensemble`. 
+The library consists of a number of components. The top-level component is the `ensemble`.
 
 ### The Ensemble
 
-The ensemble class is an instance of a simulation and is the top-level container for all the other componenents of the simulation. Methods in this class deal with advancing the time-step of the simulation as well as passing information between the actors and the environment. 
+The ensemble class is an instance of a simulation and is the top-level container for all the other components of the simulation. Methods in this class deal with advancing the time-step of the simulation as well as passing information between the actors and the environment.
 
-The base `Ensemble` class serves as the scaffolding for implementation of arbitrary day-night cycles and reward and punishment initialization. 
+The base `Ensemble` class serves as the scaffolding for implementation of arbitrary day-night cycles and reward and punishment initialization.
 
-Visualization is baked into the base class and is accessible through the `Display_Config` and various animate methods  (`animation_init`, `animate`, etc.) This functionality is implemented using matplotlib, although the idea is to move away from this framework in the future.
+Visualization is baked into the base class and is accessible through the `Display_Config` and various animate methods (`animation_init`, `animate`, etc.) This functionality is implemented using matplotlib, although the idea is to move away from this framework in the future.
 
 ## The Environment
 
@@ -83,11 +83,11 @@ The `environment` classes contain all the information about the topology of the 
 
 ## Actors
 
-Actor classes represent the behavioral agents in each simulation. `Basic_Actor` is the base class and contains the machinery required to make pseudo-random movements and obervations about it's immediate environment. 
+Actor classes represent the behavioral agents in each simulation. `Basic_Actor` is the base class and contains the machinery required to make pseudo-random movements and obervations about its immediate environment.
 
 ## Simulation State
 
-`src/configuration/cfg.json` contains the parameters of the simulation. Each one can be varied for different effects. 
+`src/configuration/cfg.json` contains the parameters of the simulation. Each one can be varied for different effects.
 
 > Note that when adding new features to an extension of a class, all new variables should be added to this file.
 
@@ -99,7 +99,7 @@ This library uses a combination of the following for running tests:
 - **flake8**: for enforcing the style guide
 - **mypy**: for static type checking
 
-Whenever you push to GitHub or create a pull request, a workflow is triggered that uses **tox** to run the tests in a testing environment on Windows, MacOS and Linux.
+Whenever you push to GitHub or create a pull request, a workflow is triggered that uses **tox** to run the tests in a testing environment on Windows, macOS and Linux.
 
 To run the tests indiviually locally, you can use the following commands in the root directory.
 - `pytest`
