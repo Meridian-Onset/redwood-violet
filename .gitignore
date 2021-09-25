@@ -14,12 +14,13 @@ pycache
 
 .coverage
 
-UNKNOWN.egg-info
-
 .vscode/**/*
 !.vscode/settings.json
 !.vscode/launch.json
 
 #ignore dev-env virtual environment
-.venv/dev-env 
+.venv/dev-env
 .venv
+
+#Ignore egg build files
+*.egg-info
