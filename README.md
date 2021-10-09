@@ -1,5 +1,6 @@
 # redwood-violet 🌳
-![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg) ![Monthly Contributions](https://img.shields.io/github/commit-activity/m/Meridian-Onset/redwood-violet?label=Commit%20Activity&logo=Github&logoColor=lightgray) ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)
+![Tests](https://github.com/Meridian-Onset/redwood-violet/actions/workflows/tests.yml/badge.svg) ![Monthly Contributions](https://img.shields.io/github/commit-activity/m/Meridian-Onset/redwood-violet?label=Commit%20Activity&logo=Github&logoColor=lightgray) ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 The intention behind this library is to serve as a modular, behavioral simulation library.
 
