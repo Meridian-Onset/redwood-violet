@@ -4,5 +4,8 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.pythonPath": ".venv/dev-env/bin/python"
+    "python.pythonPath": ".venv/dev-env/bin/python",
+    "files.exclude": {
+        "**/.git": false
+    }
 }
